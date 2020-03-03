@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "github.com/tobiaskohlbau/api-sample/api";
+
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/field_mask.proto";
+
+extend google.protobuf.FieldOptions {
+  string role = 50000;
+  bool readonly = 50001;
+}
+
+message Contact {
+  string mobile_phone = 1;
+}
+
+message Person {
+  string id = 1 [(readonly) = true];
+  string name = 2;
+  string email = 3;
+  string password = 4 [(role) = "ADMIN"];
+  Contact contact = 5;
+
+  google.protobuf.FieldMask update_mask = 6;
+}
+
+
