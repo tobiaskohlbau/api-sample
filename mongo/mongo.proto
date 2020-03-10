@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package mongo;
+
+option go_package = "github.com/tobiaskohlbau/api-sample/mongo";
+
+import "google/protobuf/descriptor.proto";
+
+enum MongoType {
+  MONGO_TYPE_UNKNOWN = 0;
+  MONGO_TYPE_OBJECT_ID = 1;
+}
+
+message MongoOptions {
+  MongoType type = 1;
+  string name = 2;
+}
+
+extend google.protobuf.FieldOptions {
+  MongoOptions options = 60000;
+}
+

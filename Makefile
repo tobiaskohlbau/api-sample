@@ -5,8 +5,5 @@ run: build
 	./api-sample
 
 protobuf:
-	protoc --proto_path=api --go_out=api --go_opt=paths=source_relative api/api.proto
-
-test:
-	@curl --location --request POST 'http://localhost:8080/person' --header 'Content-Type: application/json' \
-		--data-raw '{"id": "NONE", "name": "Jane Doe", "email": "jane@doe.com", "password": "supernonsecretpassword", "contact": {"mobilePhone": "12345678"}, "updateMask": "id,name,email,password,contact.mobilePhone"}'
+	protoc --proto_path=mongo --go_out=mongo --go_opt=paths=source_relative mongo/mongo.proto
+	protoc --proto_path=api --proto_path=mongo --go_out=api --go_opt=paths=source_relative api/api.proto
